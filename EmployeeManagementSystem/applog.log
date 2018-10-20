@@ -1,0 +1,1 @@
+2018-08-23 15:11:46,287 - com.cg.ems.dao.EmployeeDaoImp - INFO - All data retrieved:[Employee [empId=157737, empName=Prasad, empSal=1918.0], Employee [empId=896, empName=Ads, empSal=1596536.0], Employee [empId=165, empName=Prasasasas, empSal=1563.0], Employee [empId=1579, empName=Venky, empSal=1576.0], Employee [empId=14896, empName=Asad, empSal=1569.0]]
