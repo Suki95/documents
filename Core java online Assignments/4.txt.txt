@@ -1,0 +1,147 @@
+Servive .java
+
+
+package com.cg.eis.service;
+
+import com.cg.eis.bean.Employee;
+
+interface EmployeeService {
+    int SchemeCBal = 1000;
+    int SchemeBBal = 5000;
+    int SchemeABal = 15000;
+    public int maxMedicalInsurance(Employee E);
+}
+
+
+public class Service implements EmployeeService{
+
+    @Override
+    public int maxMedicalInsurance(Employee E) {
+        String s = E.InsuranceSchema;
+        if(s == "scheme a")
+            return SchemeABal;
+        if(s == "scheme b")
+            return SchemeBBal;
+        if(s == "scheme c")
+            return SchemeCBal;
+        else 
+            return 0;
+    }
+}
+
+
+
+
+EmployeeException
+
+package com.cg.eis.exception;
+
+public class EmployeeException extends Exception{
+
+    public EmployeeException(String msg) {
+        super(msg);
+    }
+    public EmployeeException()
+    {}
+    
+}
+
+
+
+
+GenerateOutput
+
+
+package com.cg.eis.pl;
+
+import com.cg.eis.bean.Employee;
+import com.cg.eis.service.Service;
+
+public class GenerateOutput {
+
+    public static void main(String args[]) throws Exception{
+        double sal = 30000;
+        Employee E = new Employee("Abc",sal,"101","Programmer");
+        System.out.println(E.getEmployeeDetails());
+        Service s = new Service();
+        System.out.println(s.maxMedicalInsurance(E));
+    }
+    
+}
+
+
+
+
+Employee
+
+package com.cg.eis.bean;
+
+import com.cg.eis.exception.EmployeeException;
+
+public class Employee {
+    public String InsuranceSchema ;
+    public String id;
+    public String name;
+    public double salary;
+    public String designation;
+    public String InsuranceScheme;
+    
+    
+    public Employee(String name, double salary, String id, String designation) throws EmployeeException{
+
+        super();
+        this.name=name;
+        this.id=id;
+        this.salary=salary;
+        designation=designation;
+        try{
+            InsuranceSchema = getInsuranceScheme(salary);
+            if(salary<3000){
+            
+                throw new EmployeeException();
+            }
+        }catch(EmployeeException e){
+            System.out.println("Exception");
+        }
+        
+    }
+    
+    public String getEmployeeDetails() throws EmployeeException {
+        
+        String result = "";
+        result += "Id: "+ this.id + "\n";
+        result += "Name: "+ this.name + "\n";
+        result += "Salary: "+ this.salary + "\n";
+        result += "Designation: " + this.designation + "\n";
+        String r = getInsuranceScheme(this.salary);
+        result += "Insurance Scheme: " + r;
+        return result;
+        
+    }
+    String getInsuranceScheme(double salary) throws EmployeeException{
+
+        if(this.salary>5000 & this.salary<20000){
+            InsuranceScheme= "scheme c";
+            return "scheme a";
+        }
+        if(this.salary>=20000 & this.salary<40000){
+            InsuranceScheme= "scheme b";
+            return "scheme b";
+        }
+        if(this.salary>=40000){
+            InsuranceScheme= "scheme a";
+            return "scheme a";
+        }
+        if(this.salary<5000&&salary>3000){
+            InsuranceScheme= "no scheme";
+            return "no scheme";
+        }
+        
+        if(this.salary<3000)
+            throw new EmployeeException();
+        return null;
+        
+        
+    }
+
+}

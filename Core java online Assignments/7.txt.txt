@@ -1,0 +1,25 @@
+import java.util.HashMap;
+
+
+class Source{
+
+
+	public HashMap<Integer,Integer> getSquares(int numbers[]){
+
+
+	    //Write your code here
+
+	    HashMap<Integer, Integer> m = new HashMap<Integer, Integer>();
+
+	 
+    for (int n: numbers) {
+ 
+		     m.put( n, n*n);
+   
+		 }
+  
+		  return m;
+
+	}
+
+}

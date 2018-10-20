@@ -1,0 +1,79 @@
+package asign6;
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Person {
+	
+	public enum Gender{M,F;}
+	Gender gender;
+	String firstName;
+	String lastName;
+	BigInteger number;
+	public Person(){
+		
+	}
+	public Person(String firstName,String lastName,Gender gender,BigInteger number)
+	{
+		this.firstName=firstName;
+		this.gender=gender;
+		this.lastName=lastName;
+		this.number=number;
+	}
+	public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public BigInteger getNumber() {
+		return number;
+	}
+	public void setNumber(BigInteger number) {
+		this.number = number;
+	}
+	
+	public static String displayDetails(Person p)
+	{
+		String result="";
+		result +="FirstName: "+p.firstName+"\n";
+		result +="LastName: "+p.lastName+"\n";
+		result +="Gender: "+p.gender+"\n";
+		result +="Number: "+p.number;
+		return result;
+	}
+		
+}
+
+class Solution extends Person{
+	
+	public static void main(String args[]){
+		Solution s=new Solution();
+		s.getDetails();
+	}
+	
+	public void getDetails()
+	{
+		Gender g1=Gender.F;
+		Gender g2=Gender.M;
+		BigInteger b=BigInteger.valueOf(896135607);
+		Person p=new Person("Sukalpa","Dey",g2,b);
+		Person.displayDetails(p);
+	}
+	
+}

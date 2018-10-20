@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+public class Source {
+    static Object lock = new Object();
+    
+     static int num;
+    
+    public static int getNum() {
+        return num;
+    }
+    
+    public static void setNum(int num1) {
+        num = num1;
+    }
+    static Scanner sc = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+
+        Thread t1 = new Thread(new Runnable() {
+            public void run() {
+                // complete this function!
+                synchronized (lock) {
+                    int num = sc.nextInt();
+                    setNum(num);
+                    
+                }
+            }
+        });
+
+        Thread t2 = new Thread(new Runnable() {
+            public void run() {
+                // complete this function!
+                synchronized (lock) {
+                    int n1 = getNum();
+                    int fact = 1;
+                    for(int i = 1; i <= n1; i++){
+                        fact *= i;
+                    }
+                    System.out.println(fact);
+                }
+            }
+        });
+
+        try {
+            t1.start();
+            t2.start();
+            t1.join();
+            t2.join();
+        } catch (Exception e) {
+            System.out.println("An exception has occured!");
+        }
+    }
+}

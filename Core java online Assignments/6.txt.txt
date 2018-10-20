@@ -1,0 +1,15 @@
+package asign6;
+
+import java.util.List;
+import java.util.ArrayList ;
+
+class Source{
+	public List<String> removeElements(List<String> l1,List<String> l2){
+		//Write your code here
+		l1.removeAll(l2);
+		
+		return l1;
+	}
+	
+	
+}

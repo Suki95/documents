@@ -1,0 +1,149 @@
+package com.capg.assign5;
+
+import com.capg.assign5.Person;
+
+abstract class Account {
+    Account()
+    {
+        
+    }
+        long accNum=1;
+        public long getAccNum() {
+            return accNum;
+        }
+
+        public void setAccNum(long accNum) {
+            this.accNum = accNum;
+        }
+        double balance;
+        private Person accHolder;
+       Account(String name,float age,double balance)
+        {
+          Person accHolder=new Person(name,age);
+          setAccHolder(accHolder);
+          this.balance=balance;
+          //accHolder.setAge(age);
+          //accHolder.setName(name);
+        }
+     
+          public void setAccHolder(Person accHolder) {
+            this.accHolder = accHolder;
+        }
+
+        public void deposit(double rupees) {
+        // Set the balance of the account after the money is deposited to the account
+        this.balance=this.balance+rupees;
+      }
+abstract void withdraw(double rupees);
+     /* public void withdraw(double rupees) {
+       // Set the balance of the account after the money is withdrawn from the account
+       if(balance-rupees>=500)
+       {
+           this.balance=this.balance-rupees;
+       }
+      }*/
+
+      public String toString() {
+        // Should return the string in the format:
+        // Name:  TempName Age: 68.0 AccNumber: 1333339438704 Balance= 899.0
+        return "Name: "+accHolder.getName()+" Age: "+accHolder.getAge()+" AccNumber: "+this.accNum+" Balance= "+this.balance;
+      }
+
+      public double getBalance() {
+        // Should return the balance present in the Account
+        return this.balance;
+      }
+      
+      public void setBalance(double bal){
+        // Set the balance for the account holder
+        if(bal>500)
+        this.balance=bal;
+      }  
+
+      public void setAccountDetails(String name, int age, int balance) {
+        // Set the account details for the account holder
+        accHolder.setName(name);
+        accHolder.setAge(age);
+        this.balance=balance;
+      }
+      
+      public Person getPerson(){
+        // return the AccountHolder
+        return accHolder;
+      }
+
+}
+
+
+
+
+
+package com.capg.assign5;
+
+
+public class Person extends Account {
+    private String name;
+    private float age;
+    public String getName() {
+    return name;
+  }
+    Person()
+    {
+          
+        
+    }
+    Person(String name,float age,double bal)
+    {
+        super(name,age,bal);
+        this.name=name;
+        this.age=age;
+  
+        //System.out.println(this.name);
+    }
+
+public Person(String name2, float age2) {
+        // TODO Auto-generated constructor stub
+    this.name=name2;
+    this.age=age2;
+    }
+public void setName(String name) {
+    this.name = name;
+  }
+
+public float getAge() {
+    return age;
+  }
+
+public void setAge(float age) {
+    this.age = age;
+    //System.out.println(age);
+  }
+
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+          //Person p=new Person("a",12);
+          Account a=new Person("a",12,1000);
+          //a.super("a",12,100);
+          //a.setAccHolder(p);
+          //Person accHolder=new Person();
+         //assert a.accNum !=0.0;
+          a.setBalance(1000);
+          a.accNum=12;
+          a.withdraw(100);
+         System.out.println(a);
+
+
+    }
+    @Override
+    void withdraw(double rupees) {
+        // TODO Auto-generated method stub
+        if(getBalance()-rupees>=500)
+           {
+               setBalance(getBalance()-rupees);
+           }
+        
+    }
+    
+
+}

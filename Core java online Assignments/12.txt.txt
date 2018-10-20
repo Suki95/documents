@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+import java.util.function.BiFunction;
+
+
+// Class name should be "Source",
+// otherwise solution won't be accepted
+public class Source {
+    public static void main(String[] args) {
+        
+        Scanner in = new Scanner(System.in);
+        
+        String username=in.nextLine();
+        String pwd=in.nextLine();
+        // Declare the variable
+    
+        
+        // Read the variable from STDIN
+    
+        
+        
+        // Output the variable to STDOUT
+        BiFunction<String, String, Boolean> validate=(u,p)->{
+        //Complete implementation
+        Boolean s=true;
+        if(username.equals("admin") && pwd.equals("admin")){
+            s=true;}
+            else {
+                s=false;
+            }
+        return s;
+        
+        };
+        
+    //Print values
+        System.out.println(validate.apply(username,pwd));
+       
+   }
+}

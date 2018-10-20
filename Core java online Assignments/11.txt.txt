@@ -1,0 +1,151 @@
+//package com.cg.test11;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+
+ class Employee {
+
+     String name;
+      double salary;
+      Integer id;
+      String Designation;
+      public String InsuranceScheme;
+
+      public Employee(String name,double salary,Integer id,String Designation) {
+      this.name=name;
+      this.salary=salary;
+      this.id=id;
+      this.Designation=Designation;
+      InsuranceScheme=getInsuranceScheme(salary);
+      }
+
+      public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDesignation() {
+        return Designation;
+    }
+
+    public void setDesignation(String designation) {
+        Designation = designation;
+    }
+
+    public String getInsuranceScheme() {
+        return InsuranceScheme;
+    }
+
+    public void setInsuranceScheme(String insuranceScheme) {
+        InsuranceScheme = insuranceScheme;
+    }
+
+    public String getInsuranceScheme(double salary) {
+        //write your code here to return the scheme on the basis of salary
+        if(salary>5000 && salary<20000){
+            InsuranceScheme="scheme c";
+        }
+        else if(salary>=20000 && salary<40000){
+            InsuranceScheme="scheme b";
+        }
+        else if(salary>=40000){
+            InsuranceScheme= "scheme a";
+        }
+       else{
+       InsuranceScheme="null";
+        //if nothing falls in the range return null 
+      }
+        return InsuranceScheme;
+        }
+      public String toString(){
+        return "Name: " + name + " Id: " + id + " Salary: " + salary + " Designation: " + Designation
+            + " InsuranceScheme: " + InsuranceScheme;
+      }
+    }
+
+
+    class EmployeeServiceImpl  {
+
+          Employee e=new Employee("shravya",12000,1,"Clerk");
+        HashMap<Integer,Employee> employeeMap;
+      //Declare a Hashmap here where key is an Integer and the value is Employee object
+
+      public void addEmployee(Employee emp) {
+        
+        //employeeMap.putAll(employeeMap);  
+          employeeMap.put(emp.id, emp);
+        //write your code here to add employee to the hashmap 
+
+      }
+
+      public boolean deleteEmployee(int id){
+          if(id==e.id){
+              employeeMap.remove(e);
+              return true;
+          }
+          else 
+              return false;
+
+        //write your code here for returning true if the employee deleted wrt the id passed else false
+          }
+      
+
+      public String ShowEmpDetails(String InsuranceScheme) {
+          String s = null;
+        if(InsuranceScheme=="scheme a"){
+            s= "Name: " + e.name + " Id: " + e.id + " Salary: " + e.salary + " Designation: " + e.Designation+
+            "InsuranceScheme: " +e.InsuranceScheme;
+                   
+        }
+        else if(InsuranceScheme=="scheme b"){
+            s= "Name: " + e.name + " Id: " + e.id + " Salary: " + e.salary + " Designation: " + e.Designation
+                +"InsuranceScheme: " +e.InsuranceScheme;
+              
+        }
+        else if(InsuranceScheme=="scheme b"){
+            s= "Name: " + e.name + " Id: " + e.id + " Salary: " + e.salary + " Designation: " + e.Designation;
+                    
+        }
+        else 
+            s="null";
+        return s;
+        //Write your code here to return a string i.e the employee details according to the insurance scheme
+        //Format: Name: name Id: id Salary: salary Designation: Designation InsuranceScheme: InsuranceScheme
+        //If multiple results they should be in a different line
+      }
+
+      public void writeEmployeeToFile(Employee employee) throws IOException{
+         // Employee e=new Employee();
+          File f=new File("EmployeeDetails.txt");
+        FileWriter fs=new FileWriter(f);
+    fs.write(employee.toString());
+        //Write your code here 
+        //make use of toString Method to write the employee details in the file
+          
+      }
+
+    }

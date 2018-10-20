@@ -1,0 +1,45 @@
+package assignment13;
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+
+// Class name should be "Source",
+// otherwise solution won't be accepted
+public class Source {
+    public static void main(String args[]) {
+        
+        Person p1=new Person(null);
+        Person p2=new Person(null);
+        Scanner in=new Scanner(System.in);
+        String s1=in.next();       
+        final List<Person> l1 = new ArrayList<Person>();
+        p1.setName(s1);
+        p2.setName(s1);
+         l1.add(p1);
+         l1.add(p2);
+         l1.forEach(Person::printName);
+        
+    }
+    private static class Person {
+        private String name;
+        public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+        public Person(final String name) {
+            this.name = name;
+        }
+        public void printName() {
+            System.out.println(name);
+        }
+    }
+}
+
+
